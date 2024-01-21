@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: TPCH_SF1000
+    description: This is a replica of the schema in big query.
+    database: SNOWFLAKE_SAMPLE_DATA 
+    schema: TPCH_SF1000
+    tables:
+      - name: customer
+      # - name: lineitem
+      # - name: orders
+      # - name: part
+      - name: nation
+      - name: region

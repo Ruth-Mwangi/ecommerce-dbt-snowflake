@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: int_nation_add_region_to_nation
+    description: Add region name to nation
+    columns:
+      - name: nation_id
+        description: Id of the nation.
+        tests:
+          - not_null
+          - unique
+      - name: nation_name
+        description: Name of nation.
+        tests:
+          - not_null
+          
+      - name: region_name
+        description: Region that nation belongs to.
+        tests:
+          - not_null
+          
+      
+      

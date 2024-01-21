@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: stg_TPCH_SF1000__regions
+    description: Regions
+    columns:
+      - name: region_id
+        description: Id of the region
+        tests:
+          - not_null
+          - unique
+      - name: region_name
+        description: Name of the region
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_TPCH_SF1000__nations
+    description: Nations
+    columns:
+      - name: nation_id
+        description: Id of the nation
+        tests:
+          - not_null
+          - unique
+      - name: nation_name
+        description: Name of the nation
+        tests:
+          - not_null
+          - unique
+      - name: region_id
+        description: Id of region nation belongs to
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_TPCH_SF1000__regions')
+              field: region_id
+
+  - name: stg_TPCH_SF1000__customers
+    description: Customers
+    columns:
+      - name: customer_id
+        description: Id of the customer.
+        tests:
+          - not_null
+          - unique
+      - name: customer_name
+        description: Name of the customer
+        tests:
+          - not_null
+      - name: nation_id
+        description: Id of the nation associated with the customer.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_TPCH_SF1000_nations')
+              field: nation_id
+      - name: phone_number
+        description: Customer phone number
+        tests:
+          - not_null
+      - name: account_balance
+        description: Customer account balance.
+        tests:
+          - not_null
+      - name: market_segment
+        description: Market segment customer is interested in.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                [
+                  "MACHINERY",
+                  "HOUSEHOLD",
+                  "FURNITURE",
+                  "AUTOMOBILE",
+                  "BUILDING",
+                ]
